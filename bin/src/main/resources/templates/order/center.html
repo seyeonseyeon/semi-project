@@ -1,0 +1,40 @@
+<meta charset="UTF-8">
+<style>
+.container-fluid {
+display: flex;
+  justify-content: center;
+}
+</style>
+<script>
+
+function sendId(id) {
+	$.ajax({
+		url:'/checkid',
+		data:{'id':id},
+		success:function(data){
+			if(data == '1') {
+				$('#cspan').text('이미 사용중인 ID입니다.');
+			}else {
+				$('#cspan').text('사용 가능한 ID입니다.');
+			}
+		}
+	});
+};
+
+
+$(document).ready(function(){
+	$('input[name="uid"]').keyup(function(){
+		var id = $(this).val();
+		sendId(id);
+	});
+	
+	$('#registerbtn').click(function(){
+		$('.user').attr({
+			'method' : 'post',
+		    'action' : 'cust/addimpl'
+		});
+		$('.user').submit();
+	});
+});
+
+</script>

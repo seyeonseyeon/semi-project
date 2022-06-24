@@ -1,0 +1,131 @@
+
+
+<!-- Page Heading -->
+<meta charset="UTF-8">
+
+<style>
+	#pimg {
+		width: 50px;
+	}
+</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+
+    
+	 function mody(cartid){
+		var num = $('#num'+cartid).val();
+
+		$.ajax({
+			url:'cartNum',
+			data:{
+			'cartid': cartid,
+			'num' : num
+			},
+			success:function(data){
+					$('#price'+cartid).text(data*num);
+				}
+			});
+
+	 };   
+    
+	$(document).ready(function() {
+		$("#selectall").click(function() {
+			if($("#selectall").is(":checked")) $("input[name=selected]").prop("checked", true);
+			else $("input[name=selected]").prop("checked", false);
+		});
+		
+		$("input[name=selected]").click(function() {
+			var total = $("input[name=selected]").length;
+			var checked = $("input[name=selected]:checked").length;
+			
+			if(total != checked) $("#selectall").prop("checked", false);
+			else $("#selectall").prop("checked", true); 
+		});
+		$('#deletebtn').click(function(){
+			var c = confirm('삭제 하시겠습니까?');
+			var sArray =[];
+			 $("input[name=selected]:checked").each(function(i) {
+				 sArray.push($(this).val());
+			 });
+		
+			
+			if(c == true){
+				location.href='/cart/delete?sArray='+sArray;
+			}
+		})
+		
+		$('#orderbtn').click(function(){
+
+			var sArray =[];
+			 $("input[name=selected]:checked").each(function(i) {
+				 sArray.push($(this).val());
+			 });
+			location.href='/order/add?sArray='+sArray;
+
+		})
+		
+	
+		
+	});
+
+
+
+
+</script>
+<div class="text-center">
+<h1 class="display-4 fw-bolder">Cart</h1>
+<p class="mb-4"></p>
+</div>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+
+        <h6 class="fw-bolder">Cart Table</h6>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="selectall" /></th>
+                        <th>상품 사진</th>
+                        <th>상품 코드</th>
+                        <th>제목</th>
+                        <th>가격</th>
+                        <th>수량</th>
+                        <th>저자</th>
+                        <th>판매상태</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr th:each="cr: ${cartlist}">
+                 
+                      	<td><input type="checkbox" name="selected" th:value="${cr.cartid}"></td>
+                        <td><a th:href="@{product/detail(pid=${cr.pid})}">
+                        <img id="pimg" th:src="@{'/img/product_img/'+${cr.img0}}"></a></td>
+                        <td  th:text="${cr.pid}"></td>
+                        <td th:text="${cr.title}"></td>
+                        <td th:id="'price'+${cr.cartid}" th:text="${cr.price}*${cr.num}"></td>
+                        <td><input  type="number" th:id="'num'+${cr.cartid}" th:value="${cr.num}"></input><button th:onclick="'mody('+${cr.cartid}+');'">수정</button></td>
+
+                        <td th:text="${cr.writer}"></td>
+                        <td 
+                        th:if="${cr.status} == 1"
+                        th:text="판매중"></td>
+                         <td 
+                        th:if="${cr.status} != 1"
+                        th:text="매진"></td>
+                       
+                    </tr>
+                
+                </tbody>
+            </table>
+            <div class="text-center">
+           <button id ="orderbtn"  class="btn btn-primary btn-user btn-block" >ORDER</button>
+           <button id ="deletebtn"  class="btn btn-primary btn-user btn-block" >DELETE</button>
+            </div>
+        </div>
+    </div>
+</div>

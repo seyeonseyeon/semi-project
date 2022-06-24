@@ -1,0 +1,56 @@
+<meta charset="UTF-8">
+<style>
+.container-fluid {
+display: flex;
+  justify-content: center;
+  
+  }
+  #pimg {
+  	width : 100px;
+	
+  
+  }
+</style>
+<script>
+
+
+$(document).ready(function(){
+	
+});
+
+</script>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+
+        <h6 class="fw-bolder">Cart Table</h6>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                    	<th>구매 날짜</th>
+                        <th>상품 사진</th>
+                        <th>제목</th>
+                    	<th>저자</th>
+                        <th>가격</th>
+                        <th>수량</th>
+                    </tr>
+                </thead>
+                
+                <tbody >
+                    <tr th:each="ord:${orderlist}">
+            			<td th:text="${#dates.format(ord.odate, 'yyyy-MM-dd')}" ></td>
+                        <td><a th:href="@{product/detail(pid=${ord.pid})}">
+                        <img id="pimg" th:src="@{'/img/product_img/'+${ord.img0}}"></a></td>
+                        <td th:text="${ord.title}"></td>
+                        <td th:text="${ord.writer}"></td>
+                        <td th:text="${ord.dprice}*${ord.dnum}"></td>
+                        <td><input  type="number" th:value="${ord.dnum}" readonly="readonly"></input></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

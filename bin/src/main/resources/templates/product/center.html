@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="UTF-8">
+ <title>Main title here</title>
+</head>
+<script>
+
+function addCart(id) {
+
+	$.ajax({
+		url:'mainAddCart',
+		data:{'id':id},
+		success:function(data){
+			if(data == '0') {
+				alert('로그인을 해해주세요');
+			}else {
+				alert('장바구니에 추가되었습니다.');
+			}
+		}
+	});
+};
+
+
+function goDetail(pid){
+
+	location.href='/product/detail?pid='+pid; 
+};
+
+</script>
+
+<body>
+<!-- Header-->
+
+        <Section>
+            <div class="container px-4 px-lg-5 mt-5">
+
+                <div class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                   
+                    <div class="col mb-5" th:each="p:${plist}">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <!-- <a th:href="@{detail(id=${p.pid})}"> -->
+                            
+                         	<a th:onclick="'goDetail(' + ${p.pid} + ');'" >
+                            <img class="card-img-top" th:src="'img/product_img/' + ${p.img0}" style="width:400" alt="..." /></a>
+                          
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                            
+                                    
+                                    <h5 class="fw-bolder" th:text="${p.title}" th:href="@{detail(id=${p.title})}" >title</h5>
+                                        <div th:text="${p.writer}">writer</div>
+                                      
+                                    <!-- Product price-->
+                                    <div th:text="${p.price}+'원'">price</div>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:onclick="'addCart(' + ${p.pid} + ');'" >add cart</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination justify-content-center">
+			    <li class="page-item disabled">
+			      <a class="page-link">Previous</a>
+			    </li>
+			    <li class="page-item"><a class="page-link" href="#">1</a></li>
+			    <li class="page-item"><a class="page-link" href="#">2</a></li>
+			    <li class="page-item"><a class="page-link" href="#">3</a></li>
+			    <li class="page-item">
+			      <a class="page-link" href="#">Next</a>
+			    </li>
+			  </ul>
+			</nav>
+</body>
+</html>
+       
+        
+

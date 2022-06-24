@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.semi4.mapper.ProductMapper">
+
+	<select id="select" parameterType="int" resultType="productVO">
+		
+		select pid, c.name, title, writer, pub, price, status, date, adult, img0, img1, img2 from product p
+		inner join cate c ON c.cid = p.cid
+		 WHERE PID=#{pid}
+	</select>
+	<select id="selectall" resultType="productVO">
+		select pid, c.name, title, writer, pub, price, status, date,adult, img0,img1,img2 from product p
+		inner join cate c ON c.cid = p.cid
+	</select>
+	
+	<insert id="insert" parameterType="productVO" >
+		INSERT INTO PRODUCT VALUES (NULL,#{cid},#{title},#{writer},#{pub},#{price},#{status},SYSDATE(),#{adult},#{img0},#{img1},#{img2})
+	</insert>
+	<update id="update" parameterType="productVO">
+		UPDATE PRODUCT SET CID=#{cid},TITLE=#{title},WRITER=#{writer},PUB=#{pub},PRICE=#{price},STATUS=#{status},ADULT=#{adult},
+		IMG0=#{img0},IMG1=#{img1},IMG2=#{img2} WHERE PID=#{pid}
+		
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM PRODUCT WHERE PID=#{pid}
+	</delete>
+
+</mapper>
+
+
+
+
+
+

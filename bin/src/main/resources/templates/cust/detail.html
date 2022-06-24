@@ -1,0 +1,105 @@
+<meta charset="UTF-8">
+<style>
+    .container-fluid {
+    display: flex;
+      justify-content: center;
+    }
+</style>
+<script>
+$(document).ready(function(){
+	$('#updatebtn').click(function(){
+		$('.user').attr({
+			'method' : 'post',
+		    'action' : 'update'
+		});
+		$('.user').submit();
+	});
+});
+
+</script>
+<div class="container-fluid">
+    <div class="col-lg-6">
+    <div class="p-5">
+    <div class="text-center">
+         <h1 class="h4 text-gray-900 mb-4">프로필</h1>
+     </div>
+     
+        <form class="user">
+            <div class="form-group">
+                아이디 : <input type="text" class="form-control form-control-user"
+                    name="uid" value="id01" th:value="${cust.uid}" readonly="readonly">
+            </div>
+            
+            <div class="form-group">
+               패스워드 : <input type="text" class="form-control form-control-user"
+                    name="pwd" value="pwd01" th:value="${cust.pwd}">
+            </div>
+            
+            <div class="form-group">
+              이름 :  <input type="text" class="form-control form-control-user"
+                    name="name" value="james" th:value="${cust.name}">
+            </div>
+            
+            <div class="form-group">
+              주소 :  <input type="text" class="form-control form-control-user"
+                    name="addr" value="seoul" th:value="${cust.addr}">
+            </div>
+            
+            <div class="form-group">
+              전화번호:  <input type="text" class="form-control form-control-user"
+                    name="phon" value="tel1" th:value="${cust.phon}">
+            </div>
+            
+            <div class="form-group">
+              탄생년 : <input type="text" class="form-control form-control-user"
+                    name="birth" value="1990" th:value="${cust.birth}">
+            </div>     
+        </form>
+       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">회원정보수정</button>
+    </div>
+</div>
+</div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <p>회원정보를 수정하시겠습니까?</p>
+        </div>
+        
+        <div class="modal-footer">
+          <button id ="updatebtn" type="button" class="btn btn-default" data-dismiss="modal">네</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+</body>
+</html>

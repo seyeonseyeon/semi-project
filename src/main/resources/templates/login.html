@@ -1,0 +1,40 @@
+
+
+<script>
+$(document).ready(function(){
+	$('#login_bt').click(function(){
+		$('#login_form').attr({
+			'method':'post',
+			'action':'/loginimpl'
+		});
+		$('#login_form').sumbit();
+	});
+});
+
+</script>
+
+<meta charset="UTF-8">
+<div class="container">
+  <div class="col-sm-offset-2 col-sm-10">
+  	<h2>LOGIN PAGE</h2>
+  </div>
+  <form class="form-horizontal" id="login_form">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="id"></label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" id="id" placeholder="아이디" name="id">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd"></label>
+      <div class="col-sm-6">          
+        <input type="password" class="form-control" id="pwd" placeholder="비밀번호" name="pwd">
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button id="login_bt" class="btn btn-default">LOGIN</button>        
+      </div>
+    </div>
+  </form>
+</div>

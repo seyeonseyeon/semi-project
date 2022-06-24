@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<style>
+#leftAd, #autoAd, #stopAd, #rightAd {
+	font-family: 'Jua', sans-serif;
+}
+#c1 {
+	font-family: 'Jua', sans-serif;
+}
+</style>
+
+<head>
+<meta charset="UTF-8">
+<title>Main title here</title>
+</head>
+<script>
+var imgs = ['img/ad_img/ad01.png', 'img/ad_img/ad02.png','img/ad_img/ad03.png'];
+var cnt = 0;
+var autoset;
+    
+    
+    
+function goDetail(pid){
+var aa = '/product/detail(id=${p.pid})';
+//alert(pid);
+location.href='/product/detail?pid='+pid; 
+};
+
+function addCart(id) {
+
+	$.ajax({
+		url:'mainAddCart',
+		data:{'id':id},
+		success:function(data){
+			if(data == '0') {
+				alert('로그인을 해해주세요');
+			}else {
+				alert('장바구니에 추가되었습니다.');
+			}
+		}
+	});
+};
+
+
+function leftclick(){
+        var str = $('#imageAd').attr('src');
+        str = str.substr(14, 1);
+        if( str == 1 ){
+            $('#imageAd').attr('src', imgs[imgs.length-1])
+            return;
+        }
+        $('#imageAd').attr('src', imgs[str-2])
+    };
+function rightclick(){
+        
+       var str = $('#imageAd').attr('src');
+		str = str.substr(14, 1);
+       if( str == 3 ){
+           $('#imageAd').attr('src', imgs[0])
+           return;
+       }
+       $('#imageAd').attr('src', imgs[str])
+    };
+
+$(document).ready(function(){
+		clearInterval(autoset)
+	    autoset = setInterval(function(){
+	        rightclick();
+	        }, 1000);
+        $('#leftAd').click(function(){
+      		  clearInterval(autoset)
+			
+            leftclick();
+        });
+        $('#rightAd').click(function(){
+     		   clearInterval(autoset)
+            rightclick();
+        });
+        // 클릭으로 setInterval을 사용하고 삭제하고 싶으면 해당 setInterval을 따로 변수에 저장해야됨
+        // 하지만 미리 변수에 저장하면 저장함과 동시에 setInterval이 실행되어 명령을 작동할 때 변수에 저장하는 방식으로 처리함
+        $('#autoAd').click(function(){
+       		 clearInterval(autoset)
+            autoset = setInterval(function(){
+                rightclick();
+                }, 1000);
+            });
+		
+        $('#stopAd').click(function(){
+            clearInterval(autoset);
+        });
+        
+});
+
+
+</script>
+
+<body>
+<div>
+
+</div>
+<!-- Header-->
+        <header class="bg-white py-5">
+            <div id="s1" class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                	<img class="card-img-top" id="imageAd" src="img/ad_img/ad01.png">
+                	<!-- Header
+                	<button id="leftAd" class="btn btn-primary btn-user btn-block">◀</button>
+					<button id="autoAd" class="btn btn-primary btn-user btn-block">Auto</button>
+					<button id="stopAd" class="btn btn-primary btn-user btn-block">Stop</button>
+					<button id="rightAd" class="btn btn-primary btn-user btn-block">▶</button>-->
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+
+        <section id="c1" class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <div class="col mb-5" th:each="p:${plist}">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <a th:onclick="'goDetail(' + ${p.pid} + ');'" >
+                            <img class="card-img-top" th:src="'img/product_img/' + ${p.img0}" style="width:400" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder" th:text="${p.title}" >title</h5>
+                                    	 <div th:text="${p.writer}">writer</div>
+                                    <!-- Product price-->
+                                    <div th:text="${p.price}+'원'">price</div>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-primary btn-user btn-block" th:onclick="'addCart(' + ${p.pid} + ');'" >Add Cart</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+</html>

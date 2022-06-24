@@ -1,0 +1,119 @@
+<meta charset="UTF-8">
+<style>
+.container-fluid {
+display: flex;
+  justify-content: center;
+}
+</style>
+<script>
+
+function sendId(id) {
+	$.ajax({
+		url:'/checkid',
+		data:{'id':id},
+		success:function(data){
+			if(data == '1') {
+				$('#cspan').text('이미 사용중인 ID입니다.');
+			}else {
+				$('#cspan').text('사용 가능한 ID입니다.');
+			}
+		}
+	});
+};
+
+
+$(document).ready(function(){
+
+	$('#registerbtn').click(function(){
+		$('.user').attr({
+			'method' : 'post',
+		    'action' : 'addimpl'
+		});
+		$('.user').submit();
+	});
+});
+
+</script>
+<div class="container-fluid">
+    <div class="col-lg-6">
+    <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">주문/결제</h1>
+        </div>
+        <form class="user">
+        	<h4>구매자정보</h4>
+            <div class="form-group"> 
+           		이름 : <input type="text" class="form-control form-control-user" th:value="${cust.name}" name="name" readonly="readonly"></div>
+            
+            <div class="form-group">
+                전화번호: <input type="password" class="form-control form-control-user" th:value="${cust.phon}" name="phon" readonly="readonly">
+            </div>
+            <p></p>
+			 <div class="card-header py-3">
+				<h6 class="fw-bolder">받는 사람 정보</h6>
+			</div>
+            <div class="form-group">
+                이름: <input type="text" class="form-control form-control-user" th:value="${cust.name}" name="oname">
+            </div>
+            
+            <div class="form-group">
+                주소: <input type="text" class="form-control form-control-user" th:value="${cust.addr}" name="oaddr">
+            </div>
+            
+            <div class="form-group">
+                전화번호: <input type="text" class="form-control form-control-user" th:value="${cust.phon}" name="ophon">
+            </div>
+
+			<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="fw-bolder">주문 목록</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>제목</th>
+                        <th>가격</th>
+                        <th style="width:10px;">수량</th>
+                        <th>저자</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cr: ${cartlist}">
+                    	<input type="hidden" th:value="${cr.pid}" name="pid"></input>
+                        <td th:text="${cr.title}"></td>
+                        <td th:text="${cr.price}*${cr.num}"></td>
+                        <td><input style="width:50px;" type="number" th:value="${cr.num}" name="dnum" readonly="readonly"></td>
+                        <td th:text="${cr.writer}"></td>
+                        <input type="hidden" th:value="${cr.price}" name="dprice"></input>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>총 결제 금액</td>
+                        <td th:text="${allprice}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+			
+			
+			
+			
+			
+			
+			
+
+            <a id="registerbtn" href="#" class="btn btn-primary btn-user btn-block">
+                구매확정
+            </a>
+            
+        </form>
+       
+    </div>
+</div>
+</div>
+</div>
