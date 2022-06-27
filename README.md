@@ -24,9 +24,9 @@
 * 형상관리: GIT
 
 2. 적용 기술
-Back: Java, SQL
-Front: HTML,CSS,Javascript
-Framework:Spring Boot, jQuery, Bootstrap, MyBatis
+* Back: Java, SQL
+* Front: HTML,CSS,Javascript
+* Framework:Spring Boot, jQuery, Bootstrap, MyBatis
 
 ### 6. 구현 할 기능
 1. 강주성 : 제품목록 생성, 세부 제품목록 생성, 제품목록에서 장바구니 담기
