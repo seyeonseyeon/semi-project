@@ -21,3 +21,17 @@
 3. 배기진 : 장바구니 생성, 장바구니 상세 페이지, css, div 정리
 
 4. 정세연 : 회원가입, 로그인, 회원 정보 수정, 기획안 작성
+### 5. 개발 기술
+1. 개발 환경
+* DB: ORACLE
+* APPLICATION:JDK
+* WAS:APACHE TOMCAT
+* IDE:ECLIPSE
+* 협업도구:ZOOM, GIT
+* 의존성 관리 도구:MAVEN
+* 형상관리:GIT
+
+2. 적용 기술
+Back: Java, SQL
+Front: HTML,CSS,Javascript
+Framework:Spring Boot, jQuery, Bootstrap, MyBatis
