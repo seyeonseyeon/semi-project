@@ -1,6 +1,6 @@
 # Semi project
 
-팀: 책 사 
+팀명: 책 사 
 
 팀원: 강주성, 문성용, 배기진, 정세연 
 
@@ -16,12 +16,12 @@
 ### 4. 개발 기술
 1. 개발 환경
 * DB: ORACLE
-* APPLICATION:JDK
-* WAS:APACHE TOMCAT
+* APPLICATION: JDK
+* WAS: APACHE TOMCAT
 * IDE: ECLIPSE
-* 협업도구:ZOOM, GIT
-* 의존성 관리 도구:MAVEN
-* 형상관리:GIT
+* 협업도구: ZOOM, GIT
+* 의존성 관리 도구: MAVEN
+* 형상관리: GIT
 
 2. 적용 기술
 Back: Java, SQL
