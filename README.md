@@ -13,20 +13,10 @@
 개발 공부를 시작한지 얼마 되지 않았기 때문에 수업 중 배운 내용을 최대한 활용할 수 있는 온라인 서점을 주제로 정함
 ### 4. 목표
 간단한 개발이더라도 코드를 정확히 알고, 정해진 기한 안에 완성하는 것을 목표로 둠.
-### 5. 개발 기술
+### 5. 프로젝트 환경 및 구조
 1. 개발 환경
-* DB: ORACLE
-* APPLICATION: JDK
-* WAS: APACHE TOMCAT
-* IDE: ECLIPSE
-* 협업도구: ZOOM, GIT
-* 의존성 관리 도구: MAVEN
-* 형상관리: GIT
+![ss](https://user-images.githubusercontent.com/103159709/177468811-bfe7bf19-efb3-4177-bd9f-9b3c6e33751b.png)
 
-2. 적용 기술
-* Back: Java, SQL
-* Front: HTML,CSS,Javascript
-* Framework: Spring Boot, jQuery, Bootstrap, MyBatis
 
 ### 6. 구현 할 기능
 1. 강주성 : 제품목록 생성, 세부 제품목록 생성, 제품목록에서 장바구니 담기
