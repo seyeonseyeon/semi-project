@@ -16,7 +16,7 @@
 ### 5. 프로젝트 환경 및 구조
 ![ss](https://user-images.githubusercontent.com/103159709/177468811-bfe7bf19-efb3-4177-bd9f-9b3c6e33751b.png)
 
-### 6. ERD 구성
+### 6. 데이터베이스 설계
 ![erd](https://user-images.githubusercontent.com/103159709/177469146-808178b5-408c-45a8-a6f7-e759581c65bd.png)
 
 ### 7. 구현 할 기능
